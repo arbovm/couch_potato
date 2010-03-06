@@ -1,7 +1,13 @@
 ## Changes
 
-### master
+### 0.2.27
+* workaround for Rails apps using bundler: database name was not initialized from couchdb.yml (langalex)
+
+### 0.2.26
 * added to_s(:json) to Date and Time to be able to get properly formatted dates/times for searching with dates/times (langalex)
+* all times are now stored as UTC (langalex)
+* added support for Float attributes (arbovm)
+
 
 ### 0.2.25
 * automatic view updates: when you change the definition of a view couch potato will now update the design document in the database (langalex)
