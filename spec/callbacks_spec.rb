@@ -64,6 +64,30 @@ describe "multiple callbacks at once" do
   end
 end
 
+describe "with 'if'-condition" do
+
+  class Ape
+    include CouchPotato::Persistence
+    attr_accessor :eaten_banana, :hungry
+    
+    before_create :eat_banana, :if => :hungry
+    
+    private
+    
+    def eat_banana
+      self.eaten_banana = true
+    end
+  end
+  
+  it "should run callback method and ignore 'if'-condition (for now)" do
+    ape = Ape.new
+    ape.hungry = false
+    ape.run_callbacks :before_create
+    ape.eaten_banana.should be_true
+  end
+
+end
+
 describe 'create callbacks' do
   
   before(:each) do

@@ -31,8 +31,10 @@ module CouchPotato
             send callback
           elsif callback.is_a?(Proc)
             callback.call self
+          elsif callback.is_a?(Hash)
+            # skip things like :if => :something? 
           else
-            raise "Don't know how to handle callback of type #{name.class.name}"
+            raise "Don't know how to handle callback of type #{callback.class.name}"
           end
         end
       end
